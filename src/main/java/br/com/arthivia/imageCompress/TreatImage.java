@@ -14,7 +14,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class TreatImage {
-    private Notifier notifier;
+    private final Notifier notifier;
 
     public TreatImage() {
         notifier = new Notifier();
@@ -27,7 +27,7 @@ public class TreatImage {
             BufferedImage img = ImageIO.read(originalPath.toFile());
 
 
-            Path outputDir = Paths.get("./output/");
+            Path outputDir = getDir();
             if (!Files.exists(outputDir)) {
                 Files.createDirectories(outputDir);
             }
@@ -82,5 +82,12 @@ public class TreatImage {
         if (attemps == 10) {
             throw new IOException("Arquivo não estabilizou. Pode estar corrompido ou bloqueado.");
         }
+    }
+
+    public static Path getDir() {
+        String userHome = System.getProperty("user.home");
+        String documentsFolder = "Documents";
+
+        return Paths.get(userHome, documentsFolder).resolve("RECEITAS").resolve("SAIDAS A PROCESSAR");
     }
 }
