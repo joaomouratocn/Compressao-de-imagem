@@ -130,17 +130,14 @@ public class Main {
             ProcessBuilder pb = getProcessBuilder(fileName, imageTempPath);
             pb.start();
 
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.printf(e.getMessage());
         }
     }
 
     private static ProcessBuilder getProcessBuilder(String fileName, String path) {
         String script = String.format("powershell.exe -ExecutionPolicy Bypass -Command \"Import-Module BurntToast; " + "Remove-BTNotification; " + "New-BurntToastNotification -Text 'Sucesso!', 'O arquivo ''%s'' está pronto para ser importado.' -AppLogo '%s'\"", fileName, path);
 
-        ProcessBuilder pb = new ProcessBuilder("cmd.exe", "/c", script);
-        return pb;
+        return new ProcessBuilder("cmd.exe", "/c", script);
     }
 }
