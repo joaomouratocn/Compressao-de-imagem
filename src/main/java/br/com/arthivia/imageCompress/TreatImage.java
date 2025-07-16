@@ -45,7 +45,7 @@ public class TreatImage {
 
             ImageWriteParam imageWriteParam = writer.getDefaultWriteParam();
             imageWriteParam.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-            imageWriteParam.setCompressionQuality(0.3f);
+            imageWriteParam.setCompressionQuality(0.0f);
 
             writer.write(null, new IIOImage(img, null, null), imageWriteParam);
 
